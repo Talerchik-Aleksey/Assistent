@@ -12,7 +12,7 @@ interface AnswerInstance
   extends Sequelize.Model<AnswerAttributes, AnswerCreationAttributes>,
     AnswerAttributes {}
 
-export const question = db.define<AnswerInstance>(
+export const answers = db.define<AnswerInstance>(
   "answers",
   {
     id: {
@@ -22,7 +22,7 @@ export const question = db.define<AnswerInstance>(
       allowNull: false,
     },
     answers: {
-      type: Sequelize.ARRAY,
+      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
   },
@@ -31,4 +31,4 @@ export const question = db.define<AnswerInstance>(
   }
 )
 
-export const userTyeps = typeof question
+export const userTyeps = typeof answers
