@@ -1,0 +1,44 @@
+@import "../../sass/variables"
+
+.helpPage
+  width: 80vw
+  height: 100vh
+  margin: 0 auto
+  display: flex
+  & > div
+    padding-top: 10vh
+  .helpForm
+    padding-top: 10vh
+    width: 100%
+    @media screen and (min-width: 980px )
+      padding-right: 50px
+      border-right: 1px solid $separateLine
+      input
+        width: 400px
+      textarea
+        width:  600px !important
+    textarea
+      resize: none
+      width: 100%
+      height: 150px
+      margin-bottom: 20px
+  .regularQuestion
+    width: 100%
+    margin-left: 20px
+    .secondMessage > p:last-child, .firstMessage > p:last-child
+      float: right
+      margin-bottom: 0px
+    .secondMessage
+      margin-top: 90px
+      
+    & h3
+      margin-bottom: 23px
+    & p
+      color: white
+      background-color: $mainColor
+      border-radius: 20px
+      padding: 10px
+      max-width: 400px
+      margin-bottom: 20px
+    @media screen and (max-width: 980px)
+      display: none

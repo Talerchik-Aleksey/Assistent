@@ -1,0 +1,12 @@
+{
+  "server": {
+    "key": "smHfTweECFqE0QThET9bXvCy68djp27ye9NLhPvs"
+  },
+  "postgreSQL": {
+    "user": "postgres",
+    "password": "changeme"
+  },
+  "hash": {
+    "secreteKey": "underground"
+  }
+}

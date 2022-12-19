@@ -1,0 +1,306 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "OpenAPI Specification for Currency API",
+    "contact": {
+      "email": "talerchyk@protonmail.com"
+    },
+    "version": "1.0.1"
+  },
+  "externalDocs": {
+    "description": "Find out more about currencyapi.com",
+    "url": "https://currencyapi.com/"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001"
+    }
+  ],
+  "tags": [
+    {
+      "name": "mongo",
+      "description": "Data from mongo"
+    },
+    {
+      "name": "postgresSQL",
+      "description": "Data from postgreSQL",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://currencyapi.com/docs"
+      }
+    }
+  ],
+  "paths": {
+    "/mongo": {
+      "get": {
+        "summary": "Get all users",
+        "tags": [
+          "mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/meta"
+                    },
+                    {
+                      "$ref": "#/components/schemas/data"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Error expected!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/postgresSQL": {
+      "get": {
+        "summary": "Get all currency",
+        "tags": [
+          "postgresSQL"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/meta"
+                    },
+                    {
+                      "$ref": "#/components/schemas/data"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Error expected!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new currency",
+        "tags": [
+          "postgresSQL"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "example": "USD"
+                  },
+                  "value": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success Post New Currency",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/single_data"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/postgresSQL/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "Currency ID.",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "postgresSQL"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Currency With With ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/single_data"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "postgresSQL"
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Currency with ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "number",
+                      "description": "Number of Deleted Records",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "postgresSQL"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "example": "USD"
+                  },
+                  "value": {
+                    "type": "number",
+                    "example": 1.2
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Edit data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "array",
+                      "example": [
+                        1
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "single_data": {
+        "type": "object",
+        "properties": {
+          "updated_at": {
+            "type": "string",
+            "example": "2022-11-24T16:10:32.235Z"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-11-24T16:10:32.235Z"
+          },
+          "id": {
+            "type": "number",
+            "example": 532
+          },
+          "code": {
+            "type": "string",
+            "example": "USD"
+          },
+          "value": {
+            "type": "number",
+            "example": 1
+          }
+        }
+      },
+      "meta": {
+        "type": "object",
+        "properties": {
+          "last_updated_at": {
+            "type": "string",
+            "example": "2022-11-24T15:12:51.809Z"
+          }
+        }
+      },
+      "data": {
+        "type": "object",
+        "properties": {
+          "USD": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "USD"
+              },
+              "value": {
+                "type": "number",
+                "example": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

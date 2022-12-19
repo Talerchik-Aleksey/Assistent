@@ -1,0 +1,35 @@
+@import "../../sass/variables"
+
+.message
+  .userAvatar
+    width: 45px
+    height: 45px
+    border-radius: 100%
+  .messageBody
+    box-shadow: $modalShadow
+    padding: 10px
+    width: fit-content 
+    margin: 10px 0px
+    .answers
+      margin-top: 10px 
+      display: flex
+      flex-direction: column
+      gap: 10px
+
+      & > button
+        background-color:  white !important
+        color: black
+        border: 1px solid $mainColor
+  .messageFromAssistent
+    .messageBody
+      margin-left: 22px
+      border-radius: 0px 20px 20px 20px
+
+  .messageFromUser
+    float: right
+    .userAvatar
+      display: -webkit-box
+      margin-left: auto
+    .messageBody
+      margin-right: 22px
+      border-radius: 20px 0px 20px 20px

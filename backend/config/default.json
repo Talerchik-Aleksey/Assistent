@@ -1,0 +1,22 @@
+{
+  "server": {
+    "host": "localhost",
+    "network": "10.1.30.45",
+    "port": 3001,
+    "APIurl": "https://api.currencyapi.com/v3/latest",
+    "mongoConnectionString": "mongodb://root:root@localhost:27017/currency?authSource=admin",
+    "DaysBetweenUpdatesInDB": 1,
+    "key": ""
+  },
+  "postgreSQL": {
+    "user": "",
+    "host": "localhost",
+    "database": "assistent",
+    "password": "",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "hash": {
+    "secreteKey": ""
+  }
+}

@@ -1,0 +1,133 @@
+@import "../../sass/variables"
+@import "../../sass/servicies"
+
+$background: hsla(0, 0%, 10%, 0.5)
+$modalColor: hsla(0, 0%, 97%, 1)
+
+
+.modalBackground 
+  z-index: 100
+  position: fixed 
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  background: $background
+
+
+.modalContent
+  background: $modalColor
+  box-shadow: -9px 4px 100px rgba(13, 41, 74, 0.25)
+  position: fixed 
+  z-index: 101
+  top: 0
+  right: 0
+  overflow: auto
+  bottom: 0
+  height: auto
+  padding: 130px 56px 15px
+  h5
+    @include adaptiv-font(20, 14)
+  p, a 
+    color: $additionColor
+    @include adaptiv-font(16, 12)
+
+  .closeButton
+    border: none
+    cursor: pointer
+    position: absolute
+    right: 56px
+    top: 36px
+    width: 50px
+    height: 50px
+    background: $additionColor 
+    border-radius: 5px
+    padding: 0px
+
+    &:before, &:after
+      position: absolute
+      content: ' '
+      height: 30px
+      top: 10px
+      width: 3px
+      background-color: $blackColor
+    &:before
+      transform: rotate(-45deg)
+    &:after
+      transform: rotate(45deg)
+  
+  .menuProfile
+    display: flex
+    flex-direction: column
+
+    & > div
+      background: white
+      box-shadow: -1px 4px 100px rgba(16, 58, 107, 0.15)
+      border-radius: 5px
+      display: flex
+      padding: 20px 30px
+      gap: 20px
+      max-width: 400px
+  
+    .userCard
+      align-items: center
+      img
+        width: 90px
+        height: 90px
+        object-fit: cover 
+        border-radius: 100%
+        background: $additionColor
+        h4
+          font-size: 18px
+    .menu
+      margin: 10% 0px
+      li
+        margin-top: 10px
+        list-style-type: none
+      li:first-child
+        margin-top: 0px !important
+        text-decoration: underline
+        color: $mainColor
+        a
+          color: $mainColor
+      a
+        text-decoration: none
+        color: $blackColor
+        font-size: 20px
+        font-weight: 400
+    
+    .infoBlock
+      display: flex
+      flex-direction: column
+      gap: 0px
+      margin-bottom: 50px
+
+      div:first-child
+        padding-bottom: 15px
+        border-bottom: 1px solid $additionColor
+      div:last-child
+        padding-top: 15px
+      
+      p
+        color: $additionColor
+
+  .license
+    width: 100%
+
+    text-align: center
+    color: $additionColor
+
+
+.notInAccount
+  flex-direction: column
+  align-items: center
+  margin: 100px 0px
+  .loginButton 
+    background: $mainColor
+    color: white
+    text-decoration: none
+    padding: 10px 40px
+    border-radius: 100px
+  .sigupLink
+    color: $additionColor
+    
