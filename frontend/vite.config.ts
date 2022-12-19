@@ -8,6 +8,8 @@ export default defineConfig({
       "/users/login": "http://localhost:3001",
       "/users/signup": "http://localhost:3001",
       "/users/user-info": "http://localhost:3001",
+      "/questions": "http://localhost:3001",
+      "/answers": "http://localhost:3001",
     },
   },
   plugins: [react()],
