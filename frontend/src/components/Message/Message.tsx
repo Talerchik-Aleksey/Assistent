@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./Message.module.sass";
 import { setAddNewMessage, setNewMessage } from "../../features/test/testSlice";
@@ -36,9 +36,11 @@ export default function Message({
     } catch (error) {}
   }
 
-  if (answers_id) {
-    getAnswers();
-  }
+  useEffect(() => {
+    if (sender === "assistent") {
+      getAnswers();
+    }
+  }, []);
 
   const handleAnswerClick = async (e: any) => {
     dispatch(
