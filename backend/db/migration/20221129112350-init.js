@@ -1,10 +1,6 @@
 /** @type {import('sequelize-cli').Migration} */
 const { DataTypes } = require("sequelize")
 
-
-
-
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("users", {
@@ -58,10 +54,44 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      question_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        autoIncrement: true,
+        onDelete: "CASCADE",
+        references: {
+          model: "questions",
+          key: "id",
+        },
+      },
       answers: {
         allowNull: false,
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
+    })
+    await queryInterface.createTable("scores", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      answer_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        autoIncrement: true,
+        onDelete: "CASCADE",
+        references: {
+          model: "answers",
+          key: "id",
+        },
+      },
+      score: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        allowNull: false,
+      }
     })
     await queryInterface.createTable("questions", {
       id: {
@@ -73,17 +103,6 @@ module.exports = {
       question_text: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      answer_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
-        autoIncrement: true,
-        onDelete: "CASCADE",
-        references: {
-          model: "questions",
-          key: "id",
-        },
       },
     })
   },
