@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 export async function postNewFavorites(favorites: Array<string>) {
   const response = await axios.post(
@@ -9,5 +9,5 @@ export async function postNewFavorites(favorites: Array<string>) {
     {
       headers: { Authorization: "Bearer " + localStorage.getItem("Token") },
     }
-  )
+  );
 }

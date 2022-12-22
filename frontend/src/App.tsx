@@ -13,6 +13,7 @@ import {
   Home,
   Login,
   Registration,
+  Results,
 } from "./pages";
 import {
   setAuth,
@@ -61,6 +62,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dialog" element={<Dialog />} />
+        <Route path="/results" element={<Results />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Registration />} />
         <Route path="/account" element={<Account />} />

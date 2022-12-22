@@ -1,5 +1,5 @@
-import React from "react"
-import { Navigate } from "react-router-dom"
+import React from "react";
+import { Navigate } from "react-router-dom";
 
 export interface ProtectedRouteProps {
   isAuthenticated: boolean;
@@ -13,8 +13,8 @@ export function ProtectedRoute({
   outlet,
 }: ProtectedRouteProps) {
   if (isAuthenticated) {
-    return outlet
+    return outlet;
   } else {
-    return <Navigate to={{ pathname: authenticationPath }} />
+    return <Navigate to={{ pathname: authenticationPath }} />;
   }
 }

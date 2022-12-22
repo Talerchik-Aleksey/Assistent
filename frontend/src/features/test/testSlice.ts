@@ -3,25 +3,39 @@ import { createSlice } from "@reduxjs/toolkit";
 interface Question {
   id: number;
   question_text: string;
-  answer_id: number;
+  answers: Answer[];
 }
+
+interface Answer {
+  id: number;
+  question_id: number;
+  answers: string;
+}
+
+type ScoredAnswer = {
+  questionId: number;
+  answer: string;
+  score: number;
+};
 
 interface TestState {
   allQuestions: Array<Question>;
   displayMessage: Array<Question>;
   currentQuestion: number;
   lastQuestionNumber: number;
+  scoredAnswers: Array<ScoredAnswer>;
 }
 
 const initialState: TestState = {
-  allQuestions: [{ id: 0, question_text: "", answer_id: 0 }],
+  allQuestions: [{ id: 0, question_text: "", [answers: ""] }],
   displayMessage: [],
   currentQuestion: 0,
   lastQuestionNumber: 0,
+  scoredAnswers: [],
 };
 
 export const testSlice = createSlice({
-  name: "user",
+  name: "test",
   initialState,
   reducers: {
     setAllQuestion: (state, action) => {
@@ -43,9 +57,12 @@ export const testSlice = createSlice({
       state.currentQuestion = newQuestionID;
       state.displayMessage.push(state.allQuestions[newQuestionID - 1]);
     },
+    setAnswer: (state, action) => {
+      state.scoredAnswers.push(action.payload);
+    },
   },
 });
 
-export const { setAllQuestion, setAddNewMessage, setNewMessage } =
+export const { setAllQuestion, setAddNewMessage, setNewMessage, setAnswer } =
   testSlice.actions;
 export const testReducer = testSlice.reducer;

@@ -1,48 +1,48 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Message.module.sass";
-import { setAddNewMessage, setNewMessage } from "../../features/test/testSlice";
+import {
+  setAddNewMessage,
+  setNewMessage,
+  setAnswer,
+} from "../../features/test/testSlice";
+import scoreAnswer from "../../utilities/ScoredAnswers";
+
+interface Answer {
+  id: number;
+  question_id: number;
+  answers: string;
+}
 
 interface MessageProps {
   message: string;
-  answers_id: number | undefined;
+  answers: Answer;
   sender: string;
   img: string;
 }
 
-interface AnswersReq {
-  data: {
-    id: number;
-    answers: Array<string>;
-  };
-}
-
 export default function Message({
   message,
-  answers_id,
+  answers,
   sender,
   img,
 }: MessageProps) {
-  const [answers, setAnswers] = useState<Array<string | never>>([]);
   const dispatch = useDispatch();
-  async function getAnswers() {
-    try {
-      const response: AnswersReq = await axios.post(
-        `/answers/${answers_id}`,
-        {}
-      );
-      setAnswers(response.data.answers);
-    } catch (error) {}
-  }
+  const [isDisabled, setIsDisabled] = useState(false);
+  const currentQuestion = useSelector(
+    (state: RootState) => state.test.currentQuestion
+  );
 
-  useEffect(() => {
-    if (sender === "assistent") {
-      getAnswers();
-    }
-  }, []);
-
-  const handleAnswerClick = async (e: any) => {
+  const handleAnswerClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(
+      setAnswer(
+        scoreAnswer({
+          questionId: currentQuestion,
+          answer: e.target.innerHTML,
+        })
+      )
+    );
     dispatch(
       setAddNewMessage({
         id: -1,
@@ -51,6 +51,7 @@ export default function Message({
       })
     );
     dispatch(setNewMessage());
+    setIsDisabled(true);
   };
 
   return (
@@ -68,7 +69,12 @@ export default function Message({
           <div className={styles.answers}>
             {answers &&
               answers.map((answer: string) => (
-                <button key={answer} type="button" onClick={handleAnswerClick}>
+                <button
+                  key={answer}
+                  type="button"
+                  onClick={handleAnswerClick}
+                  disabled={isDisabled}
+                >
                   {answer}
                 </button>
               ))}
