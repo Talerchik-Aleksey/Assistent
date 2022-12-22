@@ -27,7 +27,13 @@ interface TestState {
 }
 
 const initialState: TestState = {
-  allQuestions: [{ id: 0, question_text: "", [answers: ""] }],
+  allQuestions: [
+    {
+      id: 0,
+      question_text: "",
+      answers: [{ id: 0, question_id: -1, answers: "" }],
+    },
+  ],
   displayMessage: [],
   currentQuestion: 0,
   lastQuestionNumber: 0,

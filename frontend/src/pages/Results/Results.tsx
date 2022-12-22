@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { RootState } from "../../app/store";
 import { CalculateAnswerStatistics } from "../../utilities/CalculateAnswerStatistics";
 import { categories } from "./Categories";
@@ -40,6 +41,11 @@ export default function Results() {
           <div key={scoreName} className={styles.resultBlock}>
             <h3>{categories[scoreName].heading}</h3>
             <p>{categories[scoreName].description}</p>
+            <img
+              src={`${scoreName}.svg`}
+              alt={`Tematic Ilustretion for ${scoreName}`}
+            />
+            <Link to="/profession">Список професcий</Link>
           </div>
         ))}
       </div>

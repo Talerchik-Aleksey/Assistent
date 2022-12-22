@@ -65,7 +65,8 @@ header
         & > a
           @include standartTypography
           color: $additionColor
-
+          &:hover
+            color: $blackColor
 
       .loginButton
         @include standartTypography      
@@ -74,7 +75,8 @@ header
         color: white
         border: none
         border-radius: 100px
-
+        &:hover
+          background: hsla(208, 100%, 47%, 1)
       .burgerMenu
         @include activeLink
         width: 80px
