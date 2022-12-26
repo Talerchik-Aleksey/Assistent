@@ -33,6 +33,18 @@ export default function Results() {
     (scoreName: string) => stats[scoreName] === maxValue
   );
 
+  interface Category {
+    [key: string]: string;
+  }
+
+  const category: Category = {
+    humanNatureScore: "nature",
+    manTechnologyScore: "technology",
+    manManScore: "human",
+    manArtisticImageScore: "artistic",
+    manSignScore: "sign",
+  };
+
   return (
     <div className={styles.results}>
       <h2>Результаты</h2>
@@ -42,10 +54,10 @@ export default function Results() {
             <h3>{categories[scoreName].heading}</h3>
             <p>{categories[scoreName].description}</p>
             <img
-              src={`${scoreName}.svg`}
+              src={`${category[scoreName]}.svg`}
               alt={`Tematic Ilustretion for ${scoreName}`}
             />
-            <Link to="/profession">Список професcий</Link>
+            <Link to={`/prof/${category[scoreName]}`}>Список професcий</Link>
           </div>
         ))}
       </div>

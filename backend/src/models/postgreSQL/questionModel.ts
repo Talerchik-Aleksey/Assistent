@@ -1,36 +1,28 @@
 import * as Sequelize from "sequelize"
 import { db } from "./databaseSeq"
-
+import { answers } from "./answersModule"
 interface QuestionAttributes {
   id: string;
   question_text: string;
-  answer_id: number;
 }
 
-type QuestionCreationAttributes = Sequelize.Optional<
-  QuestionAttributes,
-  "id" | "answer_id"
->
+type QuestionCreationAttributes = Sequelize.Optional<QuestionAttributes, "id">
 
 interface QuestionInstance
   extends Sequelize.Model<QuestionAttributes, QuestionCreationAttributes>,
     QuestionAttributes {}
 
-export const question = db.define<QuestionInstance>(
-  "questions",
+export const question = db.define(
+  "question",
   {
     id: {
       type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
       allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
     },
     question_text: {
       type: Sequelize.STRING,
-      allowNull: false,
-    },
-    answer_id: {
-      type: Sequelize.INTEGER,
       allowNull: false,
     },
   },
@@ -38,5 +30,8 @@ export const question = db.define<QuestionInstance>(
     timestamps: false,
   }
 )
+
+answers.belongsTo(question, { foreignKey: "question_id" })
+question.hasMany(answers, { foreignKey: "question_id" })
 
 export const userTyeps = typeof question

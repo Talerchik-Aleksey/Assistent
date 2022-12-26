@@ -3,6 +3,7 @@ import { db } from "./databaseSeq"
 
 interface AnswerAttributes {
   id: string;
+  question_id: number;
   answers: Array<String>;
 }
 
@@ -16,14 +17,23 @@ export const answers = db.define<AnswerInstance>(
   "answers",
   {
     id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
       allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER,
+    },
+    question_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      onDelete: "CASCADE",
+      references: {
+        model: "questions",
+        key: "id",
+      },
     },
     answers: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
+      type: Sequelize.STRING,
     },
   },
   {

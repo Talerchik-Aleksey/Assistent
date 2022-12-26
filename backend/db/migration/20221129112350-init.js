@@ -47,6 +47,18 @@ module.exports = {
         defaultValue: new Date(),
       },
     })
+    await queryInterface.createTable("questions", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      question_text: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+    })
     await queryInterface.createTable("answers", {
       id: {
         allowNull: false,
@@ -57,8 +69,6 @@ module.exports = {
       question_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
-        autoIncrement: true,
         onDelete: "CASCADE",
         references: {
           model: "questions",
@@ -67,7 +77,7 @@ module.exports = {
       },
       answers: {
         allowNull: false,
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
       },
     })
     await queryInterface.createTable("scores", {
@@ -91,18 +101,44 @@ module.exports = {
       score: {
         type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull: false,
-      }
+      },
     })
-    await queryInterface.createTable("questions", {
+    await queryInterface.createTable("categories", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      question_text: {
+      name: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING,
+      },
+    })
+    await queryInterface.createTable("professions", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      categories_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onDelete: "CASCADE",
+        references: {
+          model: "categories",
+          key: "id",
+        },
+      },
+      profession_name: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+      },
+      learningIn: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
     })
   },

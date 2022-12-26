@@ -8,3 +8,4 @@ export { default as AboutUs } from "./AboutUs/AboutUs";
 export { default as Exit } from "./Exit/Exit";
 export { default as Dialog } from "./Dialog/Dialog";
 export { default as Results } from "./Results/Results";
+export { default as Professions } from "./Professions/Professions";

@@ -9,7 +9,7 @@
   .messageBody
     box-shadow: $modalShadow
     padding: 10px
-    width: fit-content 
+    max-width: 500px  
     margin: 10px 0px
     & > p 
       @include adaptiv-font(19, 19) 
@@ -23,6 +23,7 @@
         background-color:  white !important
         color: black
         border: 1px solid $mainColor
+        text-align: left 
   .messageFromAssistent
     .messageBody
       margin-left: 22px

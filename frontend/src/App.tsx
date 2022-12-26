@@ -12,6 +12,7 @@ import {
   Help,
   Home,
   Login,
+  Professions,
   Registration,
   Results,
 } from "./pages";
@@ -63,6 +64,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dialog" element={<Dialog />} />
         <Route path="/results" element={<Results />} />
+        <Route path="/prof/:category" element={<Professions />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Registration />} />
         <Route path="/account" element={<Account />} />
