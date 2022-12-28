@@ -40,20 +40,25 @@ export default function Login() {
       dispatch(setPhone(response.data.phone));
       dispatch(setAuth(true));
     } catch (e) {
+      setError({ isError: true, message: "Введены не верные данные" });
       console.log(e);
     }
   }
 
   const handleLogin = async () => {
-    const userResponse = await axios.post("/users/login", {
-      login: email,
-      password: password,
-    });
+    try {
+      const userResponse = await axios.post("/users/login", {
+        login: email,
+        password: password,
+      });
 
-    if (userResponse.data.token) {
-      setToDashboard(true);
-      localStorage.setItem("Token", userResponse.data.token);
-      loadUserData();
+      if (userResponse.data.token) {
+        setToDashboard(true);
+        localStorage.setItem("Token", userResponse.data.token);
+        loadUserData();
+      }
+    } catch (e) {
+      setError({ isError: true, message: "Введены не верные данные" });
     }
   };
 
@@ -109,7 +114,7 @@ export default function Login() {
           </div>
         </div>
         <button onClick={handleLogin}>Вход</button>
-        {error.isError && <p>Вы не заполнили обязательное поля</p>}
+        {error.isError && <p className={styles.errorMessage}>{error.message}</p>}
       </div>
     </>
   );

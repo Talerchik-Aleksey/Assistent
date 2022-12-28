@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Help.module.sass";
 
 export default function Help() {
@@ -19,7 +20,9 @@ export default function Help() {
             <textarea max-width="560px" />
           </label>
         </div>
-        <button>Отправить</button>
+        <Link to="/">
+          <button type="submit">Отправить</button>
+        </Link>
       </div>
       <div className={styles.regularQuestion}>
         <div className={styles.firstMessage}>

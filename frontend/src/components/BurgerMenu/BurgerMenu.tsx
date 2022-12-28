@@ -23,9 +23,9 @@ export default function BurgerMenu({
   const menuItems = [
     { itemName: "Платная подпиcка", to: "/subscribe" },
     { itemName: "Уведомления", to: "/subscribe" },
-    { itemName: "Настройки аккаунта", to: "/subscribe" },
-    { itemName: "Информация", to: "/subscribe" },
-    { itemName: "Поддержка", to: "/subscribe" },
+    { itemName: "Настройки аккаунта", to: "/account" },
+    { itemName: "Информация", to: "/about-us" },
+    { itemName: "Поддержка", to: "/help" },
     { itemName: "История", to: "/subscribe" },
     { itemName: "Выйти", to: "/exit" },
   ];
