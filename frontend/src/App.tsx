@@ -9,6 +9,7 @@ import {
   Dialog,
   ErrorPage,
   Exit,
+  Game,
   Help,
   Home,
   Login,
@@ -62,6 +63,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/game" element={<Game />} />
         <Route path="/dialog" element={<Dialog />} />
         <Route path="/results" element={<Results />} />
         <Route path="/prof/:category" element={<Professions />} />

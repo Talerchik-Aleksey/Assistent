@@ -1,0 +1,49 @@
+@import "../../sass/variables"
+
+table
+  width: 100%
+  & td
+    text-align: center
+
+.winMessage
+  text-align: center
+  margin-top: 40px
+  color: $mainColor
+
+.controls
+  position: fixed 
+  bottom: 15px
+  left: 15px
+  & > h1
+    text-align: center
+    color: $mainColor
+    width: 100px
+    position: absolute
+    left: 50%
+    right: 50%
+    bottom: 20px
+  .controlButtons
+    display: flex
+    gap: 5px
+    width: 286px
+    justify-content: center
+
+    & > button
+      border: 1px solid $blackColor
+      background: none
+      color: $blackColor
+      padding: 0px 10px
+      border-radius: 10px
+
+  .professionList
+    display: flex
+    gap: 30px
+    margin-top: 20px
+    .card
+      width: 286px
+      height: 286px
+      display: flex
+      justify-content: center
+      align-items: center
+      box-shadow: $modalShadow
+

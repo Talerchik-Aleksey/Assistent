@@ -9,3 +9,4 @@ export { default as Exit } from "./Exit/Exit";
 export { default as Dialog } from "./Dialog/Dialog";
 export { default as Results } from "./Results/Results";
 export { default as Professions } from "./Professions/Professions";
+export { default as Game } from "./Game/Game";
